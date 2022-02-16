@@ -1,0 +1,12 @@
+#user bash completion better support
+#it is needed when ~/.bash_completion.d/ directory is empty
+shopt -s nullglob
+
+#create a directory when it does not exist
+[ -d ~/.bash_completion.d ] || mkdir ~/.bash_completion.d
+
+for completion_file in ~/.bash_completion.d/* ; do
+    [ -f "$completion_file" ] || continue #Skip everything that is not a regular file
+  . $completion_file
+done
+
